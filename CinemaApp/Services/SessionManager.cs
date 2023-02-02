@@ -10,7 +10,7 @@ namespace CinemaApp.Services
         public void Add(Session session)
         {
             DataContext.Sessions.Add(session);
-            Console.WriteLine("Added");
+            //Console.WriteLine("Added");
         }
 
         public void Delete(int id)

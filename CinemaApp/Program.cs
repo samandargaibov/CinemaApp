@@ -94,6 +94,17 @@ namespace CinemaApp
             sessionManager.Add(sessionZodiac);
             sessionManager.Add(sessionSeven);
 
+            var filmManager = new FilmManager();
+            filmManager.Add(filmZodiac);
+            filmManager.Add(filmSeven);
+
+            var hallManager = new HallManager();
+            hallManager.Add(mercuri);
+            hallManager.Add(venera);
+            hallManager.Add(yupiter);
+
+
+
             var ticketManager = new TicketManager(sessionManager,cinemaManager);
 
             string command;
@@ -107,6 +118,11 @@ namespace CinemaApp
                     ticketManager.BuyTicket();
                 else if (command == "show tickets")
                     ticketManager.Print();
+                else if (command == "show films")
+                    filmManager.Print();
+                else if (command == "show halls")
+                    hallManager.Print();
+
 
             } while (command != "quit");
         }

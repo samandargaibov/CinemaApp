@@ -36,5 +36,16 @@ namespace CinemaApp.Utils
 
             return -1;
         }
+
+        public static int FindFilmIndex(int id)
+        {
+            for (int i = 0; i < DataContext.Films.Count; i++)
+            {
+                if (DataContext.Films[i].Id == id)
+                    return i;
+            }
+
+            return -1;
+        }
     }
 }

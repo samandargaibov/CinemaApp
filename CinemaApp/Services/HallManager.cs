@@ -5,16 +5,16 @@ using CinemaApp.Utils;
 
 namespace CinemaApp.Services
 {
-    internal class CinemaManager : ICrudService<Cinema>,IPrintService
+    internal class HallManager : ICrudService<Hall>, IPrintService
     {
-        public void Add(Cinema cinema)
+        public void Add(Hall hall)
         {
-            DataContext.Cinemas.Add(cinema);
+            DataContext.Halls.Add(hall);
         }
 
         public void Delete(int id)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindHallIndex(id);
 
             if (index == -1)
             {
@@ -23,39 +23,39 @@ namespace CinemaApp.Services
                 return;
             }
 
-            DataContext.Cinemas.RemoveAt(index);
+            DataContext.Halls.RemoveAt(index);
             Console.WriteLine("Deleted");
         }
 
-        public Cinema Get(int id)
+        public Hall Get(int id)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindHallIndex(id);
 
             if (index == -1)
             {
                 return null;
             }
 
-            return DataContext.Cinemas[index];
+            return DataContext.Halls[index];
         }
 
-        public List<Cinema> GetAll()
+        public List<Hall> GetAll()
         {
-            return DataContext.Cinemas;
+            return DataContext.Halls;
         }
 
         public void Print()
         {
-            foreach (var item in DataContext.Cinemas)
+            foreach (var item in DataContext.Halls)
             {
                 Console.WriteLine(item);
                 Console.WriteLine("-".PadRight(20, '-'));
             }
         }
 
-        public void Update(int id, Cinema newCinema)
+        public void Update(int id, Hall newHall)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindHallIndex(id);
 
             if (index == -1)
             {
@@ -64,7 +64,7 @@ namespace CinemaApp.Services
                 return;
             }
 
-            DataContext.Cinemas[index] = newCinema;
+            DataContext.Halls[index] = newHall;
         }
     }
 }

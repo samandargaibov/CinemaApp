@@ -2,19 +2,24 @@
 using CinemaApp.Models;
 using CinemaApp.Services.Contracts;
 using CinemaApp.Utils;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace CinemaApp.Services
 {
-    internal class CinemaManager : ICrudService<Cinema>,IPrintService
+    internal class FilmManager : ICrudService<Film>, IPrintService
     {
-        public void Add(Cinema cinema)
+        public void Add(Film film)
         {
-            DataContext.Cinemas.Add(cinema);
+            DataContext.Films.Add(film);
         }
 
         public void Delete(int id)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindFilmIndex(id);
 
             if (index == -1)
             {
@@ -23,39 +28,39 @@ namespace CinemaApp.Services
                 return;
             }
 
-            DataContext.Cinemas.RemoveAt(index);
+            DataContext.Halls.RemoveAt(index);
             Console.WriteLine("Deleted");
         }
 
-        public Cinema Get(int id)
+        public Film Get(int id)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindFilmIndex(id);
 
             if (index == -1)
             {
                 return null;
             }
 
-            return DataContext.Cinemas[index];
+            return DataContext.Films[index];
         }
 
-        public List<Cinema> GetAll()
+        public List<Film> GetAll()
         {
-            return DataContext.Cinemas;
+            return DataContext.Films;
         }
 
         public void Print()
         {
-            foreach (var item in DataContext.Cinemas)
+            foreach (var item in DataContext.Films)
             {
                 Console.WriteLine(item);
                 Console.WriteLine("-".PadRight(20, '-'));
             }
         }
 
-        public void Update(int id, Cinema newCinema)
+        public void Update(int id, Film newFilm)
         {
-            int index = FindHelper.FindCinemaIndex(id);
+            int index = FindHelper.FindFilmIndex(id);
 
             if (index == -1)
             {
@@ -64,7 +69,7 @@ namespace CinemaApp.Services
                 return;
             }
 
-            DataContext.Cinemas[index] = newCinema;
+            DataContext.Films[index] = newFilm;
         }
     }
 }
